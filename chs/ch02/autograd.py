@@ -1,5 +1,15 @@
 import torch
 
+def f(a):
+    b = a * 2
+    while b.norm() < 1000:
+        b = b * 2
+    if b.sum() > 0:
+        c = b
+    else:
+        c = 100 * b
+    return c
+
 x = torch.arange(4.0)
 print(x)
 
@@ -36,3 +46,10 @@ z = u * x
 print(z)
 z.sum().backward()
 print(x.grad == u)
+
+a = torch.randn(size=(), requires_grad=True)
+print(a)
+d = f(a)
+print(d)
+d.backward()
+print(a.grad)
