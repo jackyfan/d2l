@@ -26,3 +26,13 @@ y = x * x
 # 等价于y.backward(torch.ones(len(x)))
 y.sum().backward()
 print('x*x grad:',x.grad)
+
+x.grad.zero_()
+y = x * x
+#分离y来返回一个新变量u，在后面计算时把u当成常数
+u = y.detach()
+print(u)
+z = u * x
+print(z)
+z.sum().backward()
+print(x.grad == u)
