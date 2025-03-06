@@ -58,23 +58,23 @@ class NestMLP(nn.Module):
 
 
 net= nn.Sequential(nn.Linear(20,256),nn.ReLU(),nn.Linear(256,10))
-x = torch.rand(2,20)
-y = net(x)
-print(y)
+X = torch.rand(2, 20)
+Y = net(X)
+print(Y)
 
 net = MLP()
-y = net(x)
-print(y)
+Y = net(X)
+print(Y)
 
 net= MySequential(nn.Linear(20,256),nn.ReLU(),nn.Linear(256,10))
-x = torch.rand(2,20)
-y = net(x)
-print(y)
+X = torch.rand(2, 20)
+Y = net(X)
+print(Y)
 
 net = FixedHiddenMLP()
-y = net(x)
-print(y)
+Y = net(X)
+print(Y)
 #组合各种模块成混合网络
 chimera = nn.Sequential(NestMLP(), nn.Linear(16, 20), FixedHiddenMLP())
-y = chimera(x)
-print(y)
+Y = chimera(X)
+print(Y)
